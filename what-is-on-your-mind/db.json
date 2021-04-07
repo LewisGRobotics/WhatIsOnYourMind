@@ -1,11 +1,11 @@
 {
   "messages": [
     {
-      "id": 2,
+      "id": 1,
       "text": "I like trains"
     },
     {
-      "id": 1,
+      "id": 2,
       "text": "Yellow SSB bus"
     },
     {
@@ -13,7 +13,7 @@
       "text": "Porsche cayman is my dream car"
     },
     {
-      "text": "I am la hostia in vinagre",
+      "text": "I am just AWESOME",
       "id": 4
     },
     {
@@ -33,12 +33,24 @@
       "id": 8
     },
     {
-      "text": "Table with no legs. Floating board. Magnets",
+      "text": "Tabletop that has no legs. A floating board. Strong magnets hold creation",
       "id": 9
     },
     {
       "text": "I have 6 fingers",
       "id": 10
+    },
+    {
+      "text": "There's nothing sweeter than sugar.",
+      "id": 11
+    },
+    {
+      "text": "Koalas spend their waking hours sleeping",
+      "id": 12
+    },
+    {
+      "text": "What's the point of this app?",
+      "id": 13
     }
   ]
 }

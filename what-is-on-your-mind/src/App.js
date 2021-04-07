@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import ShareButton from './components/ShareButton';
+import GenericButton from './components/GenericButton';
 import TextInput from './components/TextInput';
 import ThoughtsPage from './components/ThoughtsPage';
 import {useState , useEffect} from 'react';
@@ -69,7 +69,7 @@ const App = () =>  {
           
               <TextInput setText={setUserTextInput} defaultText={userTextInput} sendMessage={sendMessage}/>
           
-              <ShareButton onClick={sendMessage}/>
+              <GenericButton onClick={sendMessage} text="Share it with the world!"/>
             </>
           )}/>
           

@@ -1,8 +1,8 @@
-const Thought = ({thoughtText}) => {
+const Thought = ({id , thoughtText}) => {
     return (
-        <div class="container">  
+        <div className="container">  
             <h3>
-                {thoughtText}
+                {id + ": " + thoughtText}
             </h3>
         </div>
     )

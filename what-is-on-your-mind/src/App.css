@@ -56,7 +56,7 @@ h3{
   background-color: var(--nicebrown);
 }
 
-.SendButton{
+.GenericButton{
   width:75vw;
   height:10vw;
   margin:1vw;
