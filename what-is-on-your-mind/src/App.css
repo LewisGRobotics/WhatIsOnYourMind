@@ -1,0 +1,73 @@
+/*Definition of global colors to avoid mess and ugly looking UI. Keep 'em colors nice.*/
+:root {
+  --nicewhite: #ffffff;
+  --niceblue: #1f6f8b;
+  --nicegrey: #99a8b2;
+  --nicebrown:#e6d5b8;
+  --niceblack: #1C2B2D;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: var(--niceblack);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--nicewhite);
+}
+
+h1{
+  color: var(--nicewhite);
+  font-size:7.5vw;
+  margin:3vw;
+}
+
+h2{
+  color: #99a8b2;
+  font-size:2.5vw;
+  margin:1vw;
+}
+
+h3{
+  color: var(--nicewhite);
+  font-size:2.5vw;
+  margin:1vw;
+}
+
+.container{
+  border:0.5vw solid var(--niceblue);
+  border-radius: 0.5vw;
+  margin: 1vw;
+}
+
+.TextInput{
+  width:75vw;
+  height:10vw;
+  margin:1vw;
+  border-radius: 5px;
+  font-size:2.5vw;
+  text-align: center;
+  background-color: var(--nicebrown);
+}
+
+.SendButton{
+  width:75vw;
+  height:10vw;
+  margin:1vw;
+  border-radius: 5px;
+  font-size: 2.5vw;
+  background-color: var(--niceblue);
+  color: var(--nicewhite);
+}
+
+.App-link {
+  color: #1f6f8b;
+  font-size: medium;
+  margin: 10px;
+}
