@@ -2,7 +2,7 @@ const Thought = ({id , thoughtText}) => {
     return (
         <div className="container">  
             <h3>
-                {id + ": " + thoughtText}
+                {thoughtText}
             </h3>
         </div>
     )

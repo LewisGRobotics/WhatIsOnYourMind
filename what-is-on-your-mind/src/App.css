@@ -24,26 +24,28 @@
 
 h1{
   color: var(--nicewhite);
-  font-size:7.5vw;
-  margin:3vw;
+  font-size:7.5vh;
+  margin:1vw;
 }
 
 h2{
   color: #99a8b2;
-  font-size:2.5vw;
+  font-size:2.5vh;
   margin:1vw;
 }
 
 h3{
   color: var(--nicewhite);
-  font-size:2.5vw;
+  font-size:2.5vh;
   margin:1vw;
 }
 
 .container{
-  border:0.5vw solid var(--niceblue);
-  border-radius: 0.5vw;
-  margin: 1vw;
+  border:5px solid var(--niceblue);
+  border-radius: 0.5vh;
+  margin: 1vh;
+  max-width: 1000px;
+  max-height: 100px;
 }
 
 .TextInput{
@@ -51,19 +53,23 @@ h3{
   height:10vw;
   margin:1vw;
   border-radius: 5px;
-  font-size:2.5vw;
+  font-size:2.5vh;
   text-align: center;
   background-color: var(--nicebrown);
+  max-width: 1000px;
+  max-height: 100px;
 }
 
 .GenericButton{
   width:75vw;
   height:10vw;
-  margin:1vw;
+  margin:1vh;
   border-radius: 5px;
-  font-size: 2.5vw;
+  font-size: 3.75vh;
   background-color: var(--niceblue);
   color: var(--nicewhite);
+  max-width: 1000px;
+  max-height: 100px;
 }
 
 .App-link {

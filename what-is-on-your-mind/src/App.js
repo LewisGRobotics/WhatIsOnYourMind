@@ -50,6 +50,12 @@ const App = () =>  {
       window.location.href = './thoughts';
     }
   }
+
+  const deleteMessage = async (id) => {
+    await fetch(`http://localhost:5000/messages/${id}`, {
+        method:'DELETE'
+      })
+  }
   
 
   return (

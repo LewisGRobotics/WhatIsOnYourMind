@@ -2,7 +2,7 @@ import Thought from './Thought';
 import GenericButton from './GenericButton';
 
 const ThoughtsPage = ({thoughts}) => {
-    const numberOfEntriesToShow = 10;
+    const numberOfEntriesToShow = 8;
     let thoughtArray = [];
 
     // Select random thoughts if the database is too big.
