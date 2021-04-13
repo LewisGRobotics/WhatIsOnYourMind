@@ -6,57 +6,50 @@ import TextInput from './components/TextInput';
 import ThoughtsPage from './components/ThoughtsPage';
 import {useState , useEffect} from 'react';
 
-const App = () =>  {
+import firebase from 'firebase/app';
+import 'firebase/database';
+import config from './config'
 
+const App = () =>  {  
+  // Initialize Firebase 
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+    console.log("Firebase initialized");
+  };  
+    
   const [userTextInput, setUserTextInput] = useState('');
   const [messages, setMessages] = useState([]);
 
-  const fetchMessages = async () => {
-    const res = await fetch('http://localhost:5000/messages');
-    const data = await res.json();
-    return data;
-  }
-  
-  useEffect(() => {
-    const getMessages = async () => {
-      const messagesFromServer = await fetchMessages();
-      console.log(messagesFromServer);
-      
-      setMessages(messagesFromServer);
-    }
+  var database = firebase.database().ref('/messages');
 
+  useEffect (()=> {
     getMessages();
   }, [])
 
+  const getMessages = async () => {
+    database.on('value', (snapshot) => {
+      const state = snapshot.val();
+      setMessages(state);
+      console.log("messages retrieved")
+      console.log(state);
+    })
+    return;
+  }
+  
   const sendMessage = async () => {
     if(userTextInput !== ''){
-      console.log(JSON.stringify(userTextInput))
+      console.log(userTextInput)
       
-      const messagesFromServer = await fetchMessages();
-      const obj = {
-        id: messagesFromServer[messagesFromServer.length],
-        text: userTextInput
-      }
+      console.log(messages);
+      console.log(messages.length);
 
-      const res = await fetch('http://localhost:5000/messages', {
-        method:'POST',
-        headers: {'Accept': 'application/json', 'Content-type': 'application/json'},
-        body: JSON.stringify(obj)
-      })
-      
-      const data = await res.json();
-      setMessages([...messages, obj]);
+      firebase.database().ref('messages/' + messages.length).set({
+        text: userTextInput
+      });
       // This reloads the page and makes you lose state: https://stackoverflow.com/questions/59417162/reactjs-href-causes-state-loss
       window.location.href = './thoughts';
     }
   }
-
-  const deleteMessage = async (id) => {
-    await fetch(`http://localhost:5000/messages/${id}`, {
-        method:'DELETE'
-      })
-  }
-  
 
   return (
     <Router>
@@ -93,8 +86,7 @@ const App = () =>  {
           </a>        
         </header>
       </div>
-    </Router>      
-    
+    </Router>    
   );
 }
 
