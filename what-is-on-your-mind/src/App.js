@@ -23,19 +23,14 @@ const App = () =>  {
   var database = firebase.database().ref('/messages');
 
   useEffect (()=> {
-    getMessages();
-  }, [])
-
-  const getMessages = async () => {
     database.on('value', (snapshot) => {
       const state = snapshot.val();
       setMessages(state);
       console.log("messages retrieved")
       console.log(state);
     })
-    return;
-  }
-  
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const sendMessage = async () => {
     if(userTextInput !== ''){
       console.log(userTextInput)
