@@ -1,5 +1,5 @@
 # WhatIsOnYourMind
-A React app to share whatever is on your mind
+A React app connected to a Google Cloud database, to share whatever is on your mind.
 
 Website link: https://what-is-on-your-mind.vercel.app/
 
