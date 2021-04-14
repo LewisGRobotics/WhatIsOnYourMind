@@ -3,8 +3,6 @@ A React app to share whatever is on your mind
 
 Website link: https://what-is-on-your-mind.vercel.app/
 
-There is a JsonDatabase branch, where I've done a test database simulation using a db.json file. In the Firebase branch (which is merged to main as well) there's a real time database integration, using Google Cloud, through their Firebase service.
-
 Description: This is a toy project I'm using to learn about databases, and web development using React.js. Work in progress right here.
 
 The project is like an anonymous twitter, where you can share a joke / a quote / an idea up to 100 characters, which is sent to a backend database where other people put their own ideas too. Then you're shown a randomized bunch of ideas, with which you will be able to somehow interact in the future (upvote/downvote, reply...?).
@@ -15,3 +13,5 @@ Example:
 
 User 1: "Tabletop that has no legs. A floating board. Strong magnets hold creation" -> Some users may find this poorly made Haiku funny, surprising or insightful. This will be upvoted/downvoted.
 User 2: "anjksdfn fnafnlkajnv" -> This is jibberish, and users will click the jibberish mark. After a certain threshold, this will be removed from the database.
+
+There is a JsonDatabase branch, where I've done a test database simulation using a db.json file. In the Firebase branch (which is merged to main as well) there's a real time database integration, using Google Cloud, through their Firebase service.
