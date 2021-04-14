@@ -14,36 +14,35 @@ const App = () =>  {
   // Initialize Firebase 
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
-    console.log("Firebase initialized");
   };  
-    
+  
   const [userTextInput, setUserTextInput] = useState('');
   const [messages, setMessages] = useState([]);
 
-  var database = firebase.database().ref('/messages');
-
   useEffect (()=> {
+    var database = firebase.database().ref('/messages');
     database.on('value', (snapshot) => {
       const state = snapshot.val();
       setMessages(state);
-      console.log("messages retrieved")
-      console.log(state);
     })
+    
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const sendMessage = async () => {
-    if(userTextInput !== ''){
-      console.log(userTextInput)
-      
-      console.log(messages);
-      console.log(messages.length);
-
-      firebase.database().ref('messages/' + messages.length).set({
-        text: userTextInput
-      });
-      // This reloads the page and makes you lose state: https://stackoverflow.com/questions/59417162/reactjs-href-causes-state-loss
-      window.location.href = './thoughts';
+    // Input validation: empty input, no space in message, message too short 
+    if(userTextInput === ''){
+      alert('Your message is empty, write something!');
+      return;
     }
+    if(userTextInput.indexOf(' ') < 1 || userTextInput.length < 5){
+      alert('You can think of something better than that');
+      return;
+    }
+    firebase.database().ref('messages/' + messages.length).set({
+      text: userTextInput
+    });
+    // This reloads the page and makes you lose state: https://stackoverflow.com/questions/59417162/reactjs-href-causes-state-loss
+    window.location.href = './thoughts';
   }
 
   return (

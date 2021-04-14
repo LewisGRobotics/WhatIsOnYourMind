@@ -16,8 +16,6 @@ const ThoughtsPage = ({thoughts}) => {
                 if(!numberArray.includes(index) && thoughts[index] !== undefined){
                     numberArray.push(index);
                     thoughtArray.push(thoughts[index])
-                    console.log("A thought was added")
-                    console.log(thoughtArray)
                 }
             }
         }
@@ -29,8 +27,6 @@ const ThoughtsPage = ({thoughts}) => {
     const reload = () => {
         window.location.reload();
     }
-
-    console.log(thoughtArray)
 
     return(
         <div>
