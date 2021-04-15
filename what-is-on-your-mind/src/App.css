@@ -5,6 +5,11 @@
   --nicegrey: #99a8b2;
   --nicebrown:#e6d5b8;
   --niceblack: #1C2B2D;
+
+  
+  --nicedarkbrown:#665538;
+  --nicered: #8b1f2d;
+  --nicegreen: #1f8b2d;
 }
 
 .App {
@@ -76,4 +81,20 @@ h3{
   color: #1f6f8b;
   font-size: medium;
   margin: 10px;
+}
+
+.upvoteIcon{
+  color: var(--nicegreen);
+}
+
+.downvoteIcon{
+  color: var(--nicered);
+}
+
+.gibberishIcon{
+  color: var(--nicedarkbrown);
+}
+
+.nocolorIcon{
+  color: var(--nicewhite);
 }
