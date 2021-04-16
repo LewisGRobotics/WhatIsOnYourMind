@@ -15,19 +15,20 @@ const App = () =>  {
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
   };  
-  
+  var database = firebase.database();
+
   const [userTextInput, setUserTextInput] = useState('');
   const [messages, setMessages] = useState([]);
 
   useEffect (()=> {
-    var database = firebase.database().ref('/messages');
-    database.on('value', (snapshot) => {
+    database.ref('/messages').on('value', (snapshot) => {
       const state = snapshot.val();
       setMessages(state);
     })
     
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Adds a message to the database
   const sendMessage = async () => {
     // Input validation: empty input, no space in message, message too short 
     if(userTextInput === ''){
@@ -38,13 +39,32 @@ const App = () =>  {
       alert('You can think of something better than that');
       return;
     }
-    firebase.database().ref('messages/' + messages.length).set({
-      text: userTextInput
+    database.ref('messages/' + messages.length).set({
+      text: userTextInput,
+      id: messages.length,
+      upvote: 5,
+      downvote: 5,
+      gibberish:0
     });
+
     // This reloads the page and makes you lose state: https://stackoverflow.com/questions/59417162/reactjs-href-causes-state-loss
     window.location.href = './thoughts';
   }
 
+  // Set entire database
+  const setDatabase = async () => {
+    for (let index = 0; index < messages.length; index++) {
+        const element = messages[index];
+        database.ref('messages/' + index).set({
+          text: element.text,
+          id: index,
+          upvote: 5,
+          downvote:5,
+          gibberish:0
+        });
+      }
+  }
+  
   return (
     <Router>
       <div className="App">
@@ -68,7 +88,7 @@ const App = () =>  {
           
           <Route path='/thoughts' render={() => (
             <>
-              <ThoughtsPage thoughts={messages}/>
+              <ThoughtsPage thoughts={messages} database={database}/>
             </>
           )}/>
 

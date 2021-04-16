@@ -1,7 +1,7 @@
 import Thought from './Thought';
 import GenericButton from './GenericButton';
 
-const ThoughtsPage = ({thoughts}) => {
+const ThoughtsPage = ({thoughts, database}) => {
     const numberOfEntriesToShow = 8;
 
     var thoughtArray = []
@@ -33,7 +33,7 @@ const ThoughtsPage = ({thoughts}) => {
             <h2>
                 Other people have this in mind:
             </h2>
-            {thoughtArray.map((thought,index) => (<Thought key={index} id={thought.id} thoughtText={thought.text}/>))}
+            {thoughtArray.map((thought,index) => (<Thought key={index} thought={thought} database={database}/>))}
             <GenericButton onClick={reload} text="Show me other thoughts!"/>
         </div>
     )

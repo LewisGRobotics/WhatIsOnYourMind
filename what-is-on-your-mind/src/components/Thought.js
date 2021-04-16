@@ -4,33 +4,65 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaPoo } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 
-const Thought = ({id , thoughtText}) => {
-    //const [upvoteCount, setUpvoteCount] = useState(0);
-    //const [downvoteCount, setDownvoteCount] = useState(0);
-    //const [gibberishCount, setGibberishCount] = useState(0);
-
+const Thought = ({thought, database}) => {
+    const [upvoteCount, setUpvoteCount] = useState(0);
+    const [downvoteCount, setDownvoteCount] = useState(0);
+    const [gibberishCount, setGibberishCount] = useState(0);
+    
     const [upvote, setUpvote] = useState(false);
     const [downvote, setDownvote] = useState(false);
     const [gibberish, setGibberish] = useState(false);
+    
     const [upvoteClassName, setupvoteClassName] = useState("nocolorIcon");
     const [downvoteClassName, setdownvoteClassName] = useState("nocolorIcon");
     const [gibberishClassName, setgibberishClassName] = useState("nocolorIcon");
 
     const onUpvote = () => {
         if(!gibberish && !downvote){
-            setUpvote(!upvote);            
+            // Stateless for now
+            //setUpvote(!upvote);
+            var upvoteCount = upvote ? thought.upvote + 1 : thought.upvote - 1;
+
+            database.ref('messages/' + thought.id).set({
+                text: thought.text,
+                id: thought.id,
+                upvote: upvoteCount,
+                downvote: thought.downvote,
+                gibberish: thought.gibberish
+            });
         }
     }
 
     const onDownvote = () => {
         if(!upvote && !gibberish){
-            setDownvote(!downvote);            
+            // Stateless for now
+            //setDownvote(!downvote);          
+            var downvoteCount = downvote ? thought.downvote + 1 : thought.downvote - 1;
+
+            database.ref('messages/' + thought.id).set({
+                text: thought.text,
+                id: thought.id,
+                upvote: thought.upvote,
+                downvote: downvoteCount,
+                gibberish: thought.gibberish
+            });
         }
     }
 
     const onGibberish = () => {
         if(!upvote && !downvote){
-            setGibberish(!gibberish);            
+            // Stateless for now
+            //setGibberish(!gibberish);
+            
+            var gibberishCount = gibberish ? thought.gibberish + 1 : thought.gibberish - 1;
+
+            database.ref('messages/' + thought.id).set({
+                text: thought.text,
+                id: thought.id,
+                upvote: thought.upvote,
+                downvote: thought.downvote,
+                gibberish: gibberishCount
+            });      
         }        
     }
 
@@ -44,7 +76,7 @@ const Thought = ({id , thoughtText}) => {
     return (
         <div className="container">  
             <h3>
-                {thoughtText + " "}
+                {thought.text + " "}
                 <FaArrowUp className={upvoteClassName} onClick = {() => onUpvote()} data-tip data-for="upvoteTip"/>
                 <ReactTooltip id="upvoteTip" place="top" effect="solid">
                     This is great / funny / amazing!
