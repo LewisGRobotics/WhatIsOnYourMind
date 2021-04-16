@@ -4,9 +4,11 @@ import GenericButton from './GenericButton';
 const ThoughtsPage = ({thoughts, database}) => {
     const numberOfEntriesToShow = 8;
 
-    var thoughtArray = []
-
-    if(thoughts !== undefined){
+    //const [thoughtState, setThoughtState] = useState([]);
+    
+    var thoughtArray = [];
+    const createThoughtArray = async () =>{
+        
         // Select random thoughts if the database is too big.
         if(thoughts.length > numberOfEntriesToShow){
             // Create an array of random numbers, with maximum values of the amount of thoughts
@@ -22,7 +24,9 @@ const ThoughtsPage = ({thoughts, database}) => {
         else{
             thoughtArray = thoughts;
         }
+        //setThoughtState(thoughtArray);
     }
+    createThoughtArray()
 
     const reload = () => {
         window.location.reload();

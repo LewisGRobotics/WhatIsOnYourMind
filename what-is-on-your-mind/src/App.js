@@ -11,7 +11,7 @@ import 'firebase/database';
 import config from './config'
 
 const App = () =>  {  
-  // Initialize Firebase 
+  // Initialize Firebase
   if (!firebase.apps.length) {
     firebase.initializeApp(config);
   };  
@@ -21,10 +21,16 @@ const App = () =>  {
   const [messages, setMessages] = useState([]);
 
   useEffect (()=> {
-    database.ref('/messages').on('value', (snapshot) => {
-      const state = snapshot.val();
-      setMessages(state);
-    })
+    // Using get instead of .on because that way changes in database don't trigger re-render
+    database.ref().child("messages").get().then(function(snapshot) {
+      if (snapshot.exists()) {
+        const state = snapshot.val();
+        setMessages(state);
+      }
+      else {
+        console.log("No data available");
+      }
+    });
     
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -52,7 +58,7 @@ const App = () =>  {
   }
 
   // Set entire database
-  const setDatabase = async () => {
+  /*const setDatabase = async () => {
     for (let index = 0; index < messages.length; index++) {
         const element = messages[index];
         database.ref('messages/' + index).set({
@@ -63,7 +69,7 @@ const App = () =>  {
           gibberish:0
         });
       }
-  }
+  }*/
   
   return (
     <Router>

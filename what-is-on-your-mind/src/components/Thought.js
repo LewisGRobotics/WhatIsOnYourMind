@@ -4,11 +4,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { FaPoo } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 
-const Thought = ({thought, database}) => {
-    const [upvoteCount, setUpvoteCount] = useState(0);
-    const [downvoteCount, setDownvoteCount] = useState(0);
-    const [gibberishCount, setGibberishCount] = useState(0);
-    
+const Thought = ({thought, database}) => {    
     const [upvote, setUpvote] = useState(false);
     const [downvote, setDownvote] = useState(false);
     const [gibberish, setGibberish] = useState(false);
@@ -19,10 +15,9 @@ const Thought = ({thought, database}) => {
 
     const onUpvote = () => {
         if(!gibberish && !downvote){
-            // Stateless for now
-            //setUpvote(!upvote);
-            var upvoteCount = upvote ? thought.upvote + 1 : thought.upvote - 1;
-
+            // I'm considering the state before toggling because the following set is async.
+            var upvoteCount = upvote ? thought.upvote : thought.upvote + 1;
+            setUpvote(!upvote);
             database.ref('messages/' + thought.id).set({
                 text: thought.text,
                 id: thought.id,
@@ -35,10 +30,9 @@ const Thought = ({thought, database}) => {
 
     const onDownvote = () => {
         if(!upvote && !gibberish){
-            // Stateless for now
-            //setDownvote(!downvote);          
-            var downvoteCount = downvote ? thought.downvote + 1 : thought.downvote - 1;
-
+            // I'm considering the state before toggling because the following set is async.
+            var downvoteCount = downvote ? thought.downvote : thought.downvote + 1;
+            setDownvote(!downvote);
             database.ref('messages/' + thought.id).set({
                 text: thought.text,
                 id: thought.id,
@@ -51,11 +45,9 @@ const Thought = ({thought, database}) => {
 
     const onGibberish = () => {
         if(!upvote && !downvote){
-            // Stateless for now
-            //setGibberish(!gibberish);
-            
-            var gibberishCount = gibberish ? thought.gibberish + 1 : thought.gibberish - 1;
-
+            // I'm considering the state before toggling because the following set is async.
+            var gibberishCount = gibberish ? thought.gibberish : thought.gibberish + 1;
+            setGibberish(!gibberish);
             database.ref('messages/' + thought.id).set({
                 text: thought.text,
                 id: thought.id,
