@@ -49,7 +49,7 @@ const App = () =>  {
       text: userTextInput,
       id: messages.length,
       upvote: 5,
-      downvote: 5,
+      downvote: 0,
       gibberish:0
     });
 
