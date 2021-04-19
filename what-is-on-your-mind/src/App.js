@@ -98,6 +98,27 @@ const App = () =>  {
             </>
           )}/>
 
+          <Route path='/database' render={() => (
+            <>
+              {messages.map((thought,index) => (
+                <div>
+                  <h3>
+                    {"ID: " + thought.id}
+                    <br />
+                    {"Text: " + thought.text}
+                    <br />
+                    {"Upvote: " + thought.upvote}
+                    <br />
+                    {"Downvote: " + thought.downvote}
+                    <br />
+                    {"Gibberish: " + thought.gibberish}
+                    <br />
+                  </h3>                  
+                  </div>
+              ))}
+            </>
+          )}/>
+
           <a
             className="App-link"
             href="https://github.com/LewisGRobotics"
