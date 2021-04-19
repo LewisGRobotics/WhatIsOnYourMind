@@ -2,6 +2,7 @@
 A React app connected to a Google Cloud database, to share whatever is on your mind.
 
 Website link: https://what-is-on-your-mind.vercel.app/
+Add /thoughts or /database to URL to see the thoughts or to see the whole database entries respectively.
 
 Description: This is a toy project I'm using to learn about databases, and web development using React.js. Work in progress right here.
 
