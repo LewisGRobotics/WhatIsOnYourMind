@@ -64,9 +64,9 @@ const App = () =>  {
         database.ref('messages/' + index).set({
           text: element.text,
           id: index,
-          upvote: 5,
-          downvote:5,
-          gibberish:0
+          upvote: element.upvote,
+          downvote:0,
+          gibberish:element.gibberish
         });
       }
   }*/

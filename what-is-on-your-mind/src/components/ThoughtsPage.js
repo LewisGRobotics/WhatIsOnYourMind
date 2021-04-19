@@ -4,27 +4,29 @@ import GenericButton from './GenericButton';
 const ThoughtsPage = ({thoughts, database}) => {
     const numberOfEntriesToShow = 8;
 
-    //const [thoughtState, setThoughtState] = useState([]);
-    
     var thoughtArray = [];
     const createThoughtArray = async () =>{
         
-        // Select random thoughts if the database is too big.
+        // Random thought selection, also ponderating votes
         if(thoughts.length > numberOfEntriesToShow){
             // Create an array of random numbers, with maximum values of the amount of thoughts
             const numberArray = [];
             while(numberArray.length < numberOfEntriesToShow){
+                // Select a random thought
                 const index = Math.floor(Math.random() * thoughts.length);
-                if(!numberArray.includes(index) && thoughts[index] !== undefined){
-                    numberArray.push(index);
-                    thoughtArray.push(thoughts[index])
+                // Ponderation: Check if (upvote - downvote) is greater than a random number from 0-9.
+                if(Math.floor(Math.random()*10) < (thoughts[index].upvote - thoughts[index].downvote) - thoughts[index].gibberish){
+                    // Check if the thought is not gibberish, is not already added and is not undefined
+                    if(thoughts[index].gibberish < 4 && !numberArray.includes(index) && thoughts[index] !== undefined){
+                        numberArray.push(index);
+                        thoughtArray.push(thoughts[index])
+                    }   
                 }
             }
         }
         else{
             thoughtArray = thoughts;
         }
-        //setThoughtState(thoughtArray);
     }
     createThoughtArray()
 

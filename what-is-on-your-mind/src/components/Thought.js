@@ -81,7 +81,7 @@ const Thought = ({thought, database}) => {
 
                 <FaPoo className={gibberishClassName} onClick = {() => onGibberish()} data-tip data-for="gibberishTip"/>
                 <ReactTooltip id="gibberishTip" place="top" effect="solid">
-                    This is gibberish
+                    This is nonsense
                 </ReactTooltip>
             </h3>
             
