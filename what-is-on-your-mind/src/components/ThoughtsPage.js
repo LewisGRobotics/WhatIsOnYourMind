@@ -15,7 +15,7 @@ const ThoughtsPage = ({thoughts, database}) => {
                 // Select a random thought
                 const index = Math.floor(Math.random() * thoughts.length);
                 // Ponderation: Check if (upvote - downvote) is greater than a random number from 0-9.
-                if(Math.floor(Math.random()*10) < (thoughts[index].upvote - thoughts[index].downvote) - thoughts[index].gibberish){
+                if(Math.floor(Math.random()*10) <= (thoughts[index].upvote - thoughts[index].downvote) - thoughts[index].gibberish){
                     // Check if the thought is not gibberish, is not already added and is not undefined
                     if(thoughts[index].gibberish < 4 && !numberArray.includes(index) && thoughts[index] !== undefined){
                         numberArray.push(index);
